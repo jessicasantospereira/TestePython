@@ -1,6 +1,7 @@
 from flask import Flask, Blueprint
 from api.views import health
 
+
 def create_app():
     api = Blueprint('api', __name__)
     app = Flask(__name__)
