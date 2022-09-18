@@ -1,0 +1,47 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  <div id="titulo" class="col-md-12">
+    <h4>Cadastro de Despesa</h4>
+  </div>
+  <div id="form_cadastro" class="col-md-12">
+    <form method="post" action="{{url_for('api.cadastrar')}}">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Descrição</label>
+          <input type="text" name="descricao" required class="form-control" />
+        </div>
+        <div class="form-group col-md-3">
+            <label>Valor</label>
+            <input type="text" name="valor" required class="form-control" />
+          </div>
+        <div class="form-group col-md-3">
+          <label>Data de pagamento</label>
+          <input type="date" name="data_compra" required class="form-control" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4" id="tipo_pagamento">
+          <label>Tipo de pagamento</label>
+          <select name="tipo_pagamento">
+            <option value="1">Dinheiro</option>
+            <option value="2">Débito</option>
+            <option value="3">Crédito</option>
+            <option value="4">Pix</option>
+          </select>
+        </div>
+        <div class="form-group col-md-4" id="categoria">
+          <label>Categoria</label>
+          <select name="categoria">
+            <option value="1">Custos Fixos</option>
+            <option value="2">Alimentação</option>
+            <option value="3">Transporte</option>
+            <option value="4">Medicamentos</option>
+          </select>
+        </div>
+      </div>
+      <input type="submit" class="btn btn-primary" value="Salvar">
+      <a href="{{url_for('api.home')}}" class="btn btn-secondary">Voltar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

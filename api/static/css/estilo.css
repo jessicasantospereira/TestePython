@@ -1,0 +1,15 @@
+.container {
+    margin-top: 20px;
+}
+
+#tipo_pagamento,
+#categoria {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#tipo_pagamento select,
+#categoria select {
+    padding: 5px;
+}

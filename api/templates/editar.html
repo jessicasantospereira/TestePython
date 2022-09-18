@@ -1,0 +1,51 @@
+{% extends "layout.html" %} {% block content %}
+<div class="container">
+  <div id="titulo" class="col-md-12">
+    <h4>Editar</h4>
+  </div>
+  <div id="form_edt_cadastro" class="col-md-12">
+    {% for i in data %}
+    <form method="post" action="{{url_for('api.editar', id=i.id)}}">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label>Descrição</label>
+          <input type="text" name="descricao" required class="form-control" value="{{i.descricao}}"/>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Valor</label>
+            <input type="text" name="valor" required class="form-control" value="{{i.valor}}"/>
+          </div>
+        <div class="form-group col-md-3">
+          <label>Data de pagamento</label>
+          <input type="date" name="data_compra" required class="form-control" value="{{i.data_compra}}"/>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4" id="tipo_pagamento">
+          <label>Tipo de pagamento</label>
+          <select name="tipo_pagamento">
+            
+            <option value="1" {{ "selected='selected'" if i.tipo_pagamento_id == 1 else "" }}>Dinheiro</option>
+            <option value="2" {{ "selected='selected'" if i.tipo_pagamento_id == 2 else "" }}>Débito</option>
+            <option value="3" {{ "selected='selected'" if i.tipo_pagamento_id == 3 else "" }}>Crédito</option>
+            <option value="4" {{ "selected='selected'" if i.tipo_pagamento_id == 4 else "" }}>Pix</option>
+            
+          </select>
+        </div>
+        <div class="form-group col-md-4" id="categoria">
+          <label>Categoria</label>
+          <select name="categoria">
+            <option value="1" {{ "selected='selected'" if i.categoria_id == 1 else "" }}>Custos Fixos</option>
+            <option value="2" {{ "selected='selected'" if i.categoria_id == 2 else "" }}>Alimentação</option>
+            <option value="3" {{ "selected='selected'" if i.categoria_id == 3 else "" }}>Transporte</option>
+            <option value="4" {{ "selected='selected'" if i.categoria_id == 4 else "" }}>Medicamentos</option>
+          </select>
+        </div>
+      </div>
+      {% endfor %}
+      <input type="submit" class="btn btn-primary" value="Salvar">
+      <a href="{{url_for('api.home')}}" class="btn btn-secondary">Voltar</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
