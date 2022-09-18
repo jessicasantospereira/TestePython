@@ -13,3 +13,7 @@ class Conexao(object):
     def desconectar(self):
         if g.conn is not None:
             g.conn.close()
+            print("Desconectado com sucesso")
+        else:
+            self.conn.close()
+            print("Desconectado com sucesso")

@@ -38,6 +38,7 @@ def cadastrar():
         data_compra = request.form['data_compra']
         tipo_pagamento = request.form['tipo_pagamento']
         categoria = request.form['categoria']
+        
         despesas.adicionar_despesas(descricao, valor, data_compra, tipo_pagamento, categoria)
         return redirect(url_for("api.home"))
     return render_template("cadastrar.html")
@@ -52,6 +53,7 @@ def editar(id):
         data_compra = request.form['data_compra']
         tipo_pagamento = request.form['tipo_pagamento']
         categoria = request.form['categoria']
+        
         despesas.atualizar_despesas(id,descricao, valor, data_compra, tipo_pagamento, categoria)    
         return redirect(url_for("api.home"))
     
@@ -60,6 +62,6 @@ def editar(id):
 def deletar(id):
     data = despesas.deletar_despesa(id)
     dados = json.loads(data.data)
-    print(dados)
+
     return redirect(url_for("api.home"))
     
