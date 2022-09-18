@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, url_for, jsonify, redirect
 from api.dao.despesasDAO import DespesasDAO
 import json
 import requests
+from datetime import datetime 
 
 despesas = DespesasDAO()
 
@@ -29,6 +30,10 @@ def home():
             else:
                 item['tipo_pagamento_id'] = 'Pix'
             
+            data_compra = datetime.strptime(item['data_compra'], "%Y-%m-%d")
+            item['data_compra'] = "{}/{}/{}".format(data_compra.day,data_compra.month,data_compra.year)
+            
+    print(dados)        
     return render_template("home.html", data = dados['data'])
 
 def cadastrar():
@@ -39,7 +44,9 @@ def cadastrar():
         tipo_pagamento = request.form['tipo_pagamento']
         categoria = request.form['categoria']
         
-        despesas.adicionar_despesas(descricao, valor, data_compra, tipo_pagamento, categoria)
+        data = despesas.adicionar_despesas(descricao, valor, data_compra, tipo_pagamento, categoria)
+        dados = json.loads(data.data)
+        print(dados)  
         return redirect(url_for("api.home"))
     return render_template("cadastrar.html")
 
