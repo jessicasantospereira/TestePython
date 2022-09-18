@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <a href="{{url_for('api.cadastrar')}}" class="btn btn-success btn_cadastrar">Nova Despesa </a>
+      <a href="{{url_for('api.cadastrar')}}" class="btn btn-success btn_cadastrar"><i class="fa fa-plus" aria-hidden="true"></i> Nova Despesa </a>
     </div>
 
   </div>
@@ -18,7 +18,7 @@
             <th scope="col">Data</th>
             <th scope="col">Tipo</th>
             <th scope="col">Categoria</th>
-            <th scope="col">Editar</th>
+            <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
@@ -32,8 +32,8 @@
             <td>{{i.data_compra}}</td>
             <td>{{i.tipo_pagamento_id}}</td>
             <td>{{i.categoria_id}}</td>
-            <td><a href="{{url_for('api.editar',id=i.id)}}" class="btn btn-primary">Editar</a>
-            <a href="{{url_for('api.deletar',id=i.id)}}" class="btn btn-danger" onclick="return confirm ('Tem certeza que deseja apagar?')">Deletar</a></td>
+            <td><a href="{{url_for('api.editar',id=i.id)}}" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+            <a href="{{url_for('api.deletar',id=i.id)}}" class="btn btn-danger" onclick="return confirm ('Tem certeza que deseja apagar?')"><i class="fa fa-trash" aria-hidden="true"></i> </a></td>
           </tr>
           
           {% endfor %}
