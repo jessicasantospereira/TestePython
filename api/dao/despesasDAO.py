@@ -10,16 +10,14 @@ class DespesasDAO(object):
     def adicionar_despesas(self, descricao, valor, data_compra, tipo_pagamento, categoria):
         conn = Conexao()
         con = conn.conectar()
-        con.row_factory = sqlite3.Row
         cursor = con.cursor()
         query = """ INSERT INTO despesas(valor, data_compra, descricao, tipo_pagamento_id, categoria_id) VALUES (?,?,?,?,?)"""
         resposta = cursor.execute(query, (valor, data_compra,descricao, tipo_pagamento, categoria))
         con.commit()
         if(resposta != ''):
-            ultimo= """SELECT * FROM despesas ORDER BY id DESC LIMIT 1"""
+            ultimo= """SELECT id FROM despesas ORDER BY id DESC LIMIT 1"""
             cursor.execute(ultimo)
-            resultado = [{'id': row[0], 'valor':row[1], 'data_compra':row[2], 'descricao':row[3], 'tipo_pagamento_id': row[4], 'categoria_id':row[5]}
-                            for row in cursor.fetchall()]
+            resultado = cursor.fetchall()
             con.close()
             return jsonify({"data": resultado, "sucess": True})
         else:
